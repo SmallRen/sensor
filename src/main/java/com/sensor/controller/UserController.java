@@ -71,7 +71,7 @@ public class UserController {
             @ApiImplicitParam(name = "password", value = "用户密码", required = true, dataType = "String"),
             @ApiImplicitParam(name = "card", value = "身份证号", required = true, dataType = "String")
     })
-    @GetMapping("/save")
+    @PostMapping("/save")
     public ResponseResult<Boolean> save(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("card") String card) {
 
         return ResponseResult.e(ResponseCode.OK, userService.save(username, password, card));

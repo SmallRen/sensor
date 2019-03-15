@@ -10,11 +10,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -47,7 +43,6 @@ public class SensorController {
             @ApiImplicitParam(name = "temperature", value = "体温", required = true, dataType = "String"),
             @ApiImplicitParam(name = "levelLndicators", value = "液位", required = true, dataType = "String")
     })
-
     @PostMapping("/save")
     public ResponseResult<Boolean> save(@RequestParam("heartRate") String heartRate, @RequestParam("heartRate") String temperature, @RequestParam("heartRate") String levelLndicators) {
         return ResponseResult.e(ResponseCode.OK, sensorService.save(heartRate, temperature, levelLndicators));
@@ -59,7 +54,7 @@ public class SensorController {
      * @return
      */
     @ApiOperation(value = "查询所有历史数据", notes = "查询所有历史数据")
-    @PostMapping("/all")
+    @GetMapping("/all")
     public ResponseResult<List<Sensor>> all() {
         return ResponseResult.e(ResponseCode.OK, sensorService.list());
     }
