@@ -21,12 +21,7 @@ public interface ISensorService extends IService<Sensor> {
      */
     Sensor lately();
 
-    /**
-     * 查询所有的记录
-     *
-     * @return List<Sensor>
-     */
-    List<Sensor> all();
+
 
     boolean save(String heartRate, String temperature, String levelLndicators);
 }

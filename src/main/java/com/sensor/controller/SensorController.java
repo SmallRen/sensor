@@ -41,7 +41,7 @@ public class SensorController {
      * @param levelLndicators
      * @return
      */
-    @ApiOperation(value = "用户注册", notes = "根据用户和密码和身份证进行注册")
+    @ApiOperation(value = "插入传感器数据", notes = "插入传感器数据")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "heartRate", value = "心率", required = true, dataType = "String"),
             @ApiImplicitParam(name = "temperature", value = "体温", required = true, dataType = "String"),
@@ -61,7 +61,7 @@ public class SensorController {
     @ApiOperation(value = "查询所有历史数据", notes = "查询所有历史数据")
     @PostMapping("/all")
     public ResponseResult<List<Sensor>> all() {
-        return ResponseResult.e(ResponseCode.OK, sensorService.all());
+        return ResponseResult.e(ResponseCode.OK, sensorService.list());
     }
 
     /**

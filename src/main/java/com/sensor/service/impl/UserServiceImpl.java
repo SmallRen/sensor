@@ -18,23 +18,21 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
-    @Mapper
-    UserMapper mapper;
+
 
     @Override
     public User login(String username, String password) {
         QueryWrapper wrapper = new QueryWrapper();
         wrapper.eq("username", username);
         wrapper.eq("password", password);
-        User user = mapper.selectOne(wrapper);
-        return user;
+        return this.getOne(wrapper);
     }
 
     @Override
     public boolean checkUserName(String username) {
         QueryWrapper wrapper = new QueryWrapper();
         wrapper.eq("username", username);
-        User user = mapper.selectOne(wrapper);
+        User user = this.getOne(wrapper);
         return user == null ? false : true;
     }
 
@@ -44,7 +42,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         user.setUsername(username);
         user.setCard(card);
         user.setPassword(password);
-        mapper.insert(user);
-        return mapper.insert(user) == 1 ? true : false;
+        return this.save(user);
     }
 }

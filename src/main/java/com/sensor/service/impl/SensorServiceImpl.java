@@ -6,6 +6,7 @@ import com.sensor.mapper.SensorMapper;
 import com.sensor.service.ISensorService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -22,24 +23,12 @@ import java.util.List;
  */
 @Service
 public class SensorServiceImpl extends ServiceImpl<SensorMapper, Sensor> implements ISensorService {
-    @Mapper
-    SensorMapper mapper;
-
-
     @Override
     public Sensor lately() {
         QueryWrapper<Sensor> wrapper = new QueryWrapper<>();
-        wrapper.orderByDesc("collectDate");
-        return mapper.selectOne(wrapper);
+        wrapper.orderByDesc("collect_date");
+        return this.getOne(wrapper);
 
-    }
-
-    @Override
-    public List<Sensor> all() {
-
-         mapper.selectList(null);
-
-         return null;
     }
 
     @Override
@@ -49,6 +38,6 @@ public class SensorServiceImpl extends ServiceImpl<SensorMapper, Sensor> impleme
         sensor.setTemperature(temperature);
         sensor.setLevelLndicators(levelLndicators);
         sensor.setCollectDate(LocalDateTime.now());
-        return mapper.insert(sensor) == 1 ? true : false;
+        return this.save(sensor);
     }
 }
