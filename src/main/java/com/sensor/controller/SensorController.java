@@ -65,7 +65,7 @@ public class SensorController {
      * @return
      */
     @ApiOperation(value = "查询最近的一条数据", notes = "查询最近的一条数据")
-    @PostMapping("/lately")
+    @GetMapping("/lately")
     public ResponseResult<Sensor> lately() {
         return ResponseResult.e(ResponseCode.OK, sensorService.lately());
     }
