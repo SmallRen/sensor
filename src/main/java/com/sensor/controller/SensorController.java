@@ -39,9 +39,9 @@ public class SensorController {
      */
     @ApiOperation(value = "插入传感器数据", notes = "插入传感器数据")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "heartRate", value = "心率", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "temperature", value = "体温", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "levelLndicators", value = "液位", required = true, dataType = "String")
+            @ApiImplicitParam(name = "heartRate", value = "心率", required = true, paramType = "form", dataType = "String"),
+            @ApiImplicitParam(name = "temperature", value = "体温", required = true, paramType = "form", dataType = "String"),
+            @ApiImplicitParam(name = "levelLndicators", value = "液位", required = true, paramType = "form", dataType = "String")
     })
     @PostMapping("/save")
     public ResponseResult<Boolean> save(@RequestParam("heartRate") String heartRate, @RequestParam("heartRate") String temperature, @RequestParam("heartRate") String levelLndicators) {
